@@ -32,5 +32,6 @@ public class MainActivity extends FragmentActivity{
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		Constant.screenWidth = dm.widthPixels;
 		Constant.screenHeight = dm.heightPixels;
+		Constant.density = (int)dm.density;
 	}
 }

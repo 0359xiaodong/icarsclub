@@ -2,65 +2,74 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-	<RelativeLayout 
-	    android:id="@+id/top"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentTop="true"
-	    android:padding="10dp"
-	    android:background="@drawable/bg_shadow_top">
-	    <CheckBox 
-	        android:id="@+id/chang_car_map"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:button="@null"
-	        android:layout_alignParentLeft="true"
-	        android:background="@drawable/bg_top_chang"/>
-	    <RelativeLayout 
-	        android:id="@+id/rl_title"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_centerHorizontal="true">
-	        <TextView 
-	            android:id="@+id/title"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="@string/title"
-	            android:textSize="@dimen/title_text_size"
-	            android:layout_alignParentLeft="true"
-	            android:textColor="@color/menu_text_color_default"/>
-	        <TextView 
-	            android:id="@+id/city"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_toRightOf="@id/title"
-	            android:text="-深圳"
-	            android:layout_centerVertical="true"
-	            android:textSize="@dimen/top_city_size"
-	            android:textColor="@color/menu_text_color_default"
-	            android:layout_marginLeft="5dp"/>
-	        <ImageView 
-	            android:id="@+id/chang_city_img"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:src="@drawable/ic_arrow_down_orange"
-	            android:layout_toRightOf="@id/city"
-	            android:layout_marginLeft="5dp"
-	            android:layout_centerVertical="true"/>
-	        
-	    </RelativeLayout>
-	    <Button 
-	        android:id="@+id/chang_car_map"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentRight="true"
-	        android:background="@drawable/bg_top_search"/>
-	</RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_shadow_top"
+        android:padding="10dp" >
+
+        <CheckBox
+            android:id="@+id/chang_car_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/bg_top_chang"
+            android:button="@null" />
+
+        <RelativeLayout
+            android:id="@+id/rl_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" >
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/title"
+                android:textColor="@color/menu_text_color_default"
+                android:textSize="@dimen/title_text_size" />
+
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/title"
+                android:text="-深圳"
+                android:textColor="@color/menu_text_color_default"
+                android:textSize="@dimen/top_city_size" />
+
+            <ImageView
+                android:id="@+id/chang_city_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/city"
+                android:src="@drawable/ic_arrow_down_orange" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/chang_car_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_top_search" />
+    </RelativeLayout>
+
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="match_parent" 
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/top">
+        android:layout_below="@id/top" >
 
         <RelativeLayout
             android:id="@+id/find_car_map"
@@ -71,8 +80,15 @@
         <RelativeLayout
             android:id="@+id/find_car"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="#424242" >
+            android:layout_height="fill_parent" >
+
+            <ListView 
+                android:id="@+id/find_car_list"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:listSelector="@android:color/transparent">
+                
+            </ListView>
         </RelativeLayout>
     </FrameLayout>
 
