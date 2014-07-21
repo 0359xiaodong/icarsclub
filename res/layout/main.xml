@@ -1,12 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-	<Button 
-	    android:id="@+id/btn"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="click me"/>
-</LinearLayout>
+    android:background="@drawable/bg_splash" >
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/shadow_buttom"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+      <!--   <fragment
+            android:id="@+id/fragment2"
+            android:name="com.cm.icrsclub.fragment.FindCarFragment"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" /> -->
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/shadow_buttom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_shadow_bottom"
+        android:checkedButton="@+id/menu_find_car"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="10dp" >
+
+        <RadioButton
+            android:id="@+id/menu_find_car"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/bg_menu_find_car"
+            android:gravity="center"
+            android:text="找车"
+            android:textColor="@color/menu_text_color"
+            android:textSize="@dimen/menu_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_use_car"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/bg_menu_use_car"
+            android:gravity="center"
+            android:text="用车"
+            android:textColor="@color/menu_text_color"
+            android:textSize="@dimen/menu_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_rent_car"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/bg_menu_rent_car"
+            android:gravity="center"
+            android:text="爱车出租"
+            android:textColor="@color/menu_text_color"
+            android:textSize="@dimen/menu_text_size" />
+
+        <RadioButton
+            android:id="@+id/menu_more"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/bg_menu_more"
+            android:gravity="center"
+            android:text="更多"
+            android:textColor="@color/menu_text_color"
+            android:textSize="@dimen/menu_text_size" />
+    </RadioGroup>
+
+</RelativeLayout>
