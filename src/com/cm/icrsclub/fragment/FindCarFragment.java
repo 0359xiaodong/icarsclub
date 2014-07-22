@@ -5,10 +5,15 @@ import com.cm.icrsclub.adapter.CityListAdapter;
 import com.cm.icrsclub.adapter.FindCarAdapter;
 import com.cm.icrsclub.constant.Constant;
 import com.cm.icrsclub.popup.ChangeCityPopup;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import android.transition.ChangeBounds;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -38,7 +43,8 @@ public class FindCarFragment extends Fragment implements OnClickListener, OnChec
 	private TextView title_city;
 	private CheckBox cb_chang_car_map;
 	private ChangeCityPopup popup;
-	private ListView find_car_listview;
+	private PullToRefreshListView find_car_listview;
+	private FindCarAdapter mFindCarAdapter;
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -57,14 +63,36 @@ public class FindCarFragment extends Fragment implements OnClickListener, OnChec
 		img_title = (ImageView) view.findViewById(R.id.chang_city_img);
 		title_city =(TextView) view.findViewById(R.id.city);
 		cb_chang_car_map = (CheckBox) view.findViewById(R.id.chang_car_map);
-		find_car_listview = (ListView) view.findViewById(R.id.find_car_list);
+		find_car_listview = (PullToRefreshListView) view.findViewById(R.id.find_car_list);
 		
 		rl_title.setOnClickListener(this);
 		cb_chang_car_map.setOnCheckedChangeListener(this);
 //		rl_find_car.setOnClickListener(this);
 //		rl_find_car_map.setOnClickListener(this);
+		mFindCarAdapter = new FindCarAdapter(getActivity());
+		find_car_listview.setAdapter(mFindCarAdapter);
 		
-		find_car_listview.setAdapter(new FindCarAdapter(getActivity()));
+		find_car_listview.setOnRefreshListener(new OnRefreshListener2<ListView>() {
+
+			@Override
+			public void onPullDownToRefresh(
+					PullToRefreshBase<ListView> refreshView) {
+				// TODO Auto-generated method stub
+				String label = DateUtils.formatDateTime(getActivity().getApplicationContext(), System.currentTimeMillis(),
+						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+				refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+				new GetDataTask().execute();
+			}
+
+			@Override
+			public void onPullUpToRefresh(
+					PullToRefreshBase<ListView> refreshView) {
+				// TODO Auto-generated method stub
+				new GetDataTask().execute();
+			}
+		
+		});
+		
 		return view;
 	}
 	
@@ -119,6 +147,29 @@ public class FindCarFragment extends Fragment implements OnClickListener, OnChec
 		String city = popup.getCity();
 		if(!TextUtils.isEmpty(city)){
 			title_city.setText("-"+city);
+		}
+	}
+	
+	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+
+		@Override
+		protected String[] doInBackground(Void... params) {
+			// Simulates a background job.
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String[] result) {
+			
+			mFindCarAdapter.notifyDataSetChanged();
+
+			// Call onRefreshComplete when the list has been refreshed.
+			find_car_listview.onRefreshComplete();
+
 		}
 	}
 	
