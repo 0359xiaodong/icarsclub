@@ -2,6 +2,7 @@ package com.cm.icrsclub.fragment;
 
 import com.cm.icarsclub.R;
 import com.cm.icrsclub.adapter.CityListAdapter;
+import com.cm.icrsclub.adapter.FindCarAdapter;
 import com.cm.icrsclub.constant.Constant;
 import com.cm.icrsclub.popup.ChangeCityPopup;
 
@@ -62,6 +63,8 @@ public class FindCarFragment extends Fragment implements OnClickListener, OnChec
 		cb_chang_car_map.setOnCheckedChangeListener(this);
 //		rl_find_car.setOnClickListener(this);
 //		rl_find_car_map.setOnClickListener(this);
+		
+		find_car_listview.setAdapter(new FindCarAdapter(getActivity()));
 		return view;
 	}
 	

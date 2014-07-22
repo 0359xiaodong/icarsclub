@@ -1,5 +1,7 @@
 package com.cm.icrsclub.adapter;
 
+import com.cm.icarsclub.R;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +20,7 @@ public class FindCarAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 10;
 	}
 
 	@Override
@@ -36,7 +38,10 @@ public class FindCarAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup arg2) {
 		// TODO Auto-generated method stub
-		return null;
+		if(convertView == null){
+			convertView = inflater.inflate(R.layout.item_find_car, null);
+		}
+		return convertView;
 	}
 
 }

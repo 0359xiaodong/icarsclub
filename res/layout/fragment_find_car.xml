@@ -86,6 +86,7 @@
                 android:id="@+id/find_car_list"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
+                android:divider="@drawable/ic_menu_divider"
                 android:listSelector="@android:color/transparent">
                 
             </ListView>
