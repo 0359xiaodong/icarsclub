@@ -96,7 +96,8 @@
                 android:smoothScrollbar="true"
                 ptr:ptrMode="both" 
                 ptr:ptrHeaderTextColor="@color/menu_text_color_default"
-                ptr:ptrHeaderSubTextColor="@color/menu_text_color_default"/>
+                ptr:ptrHeaderSubTextColor="@color/menu_text_color_default"
+                ptr:ptrDrawable="@drawable/default_ptr_rotate"/>
         </RelativeLayout>
     </FrameLayout>
 

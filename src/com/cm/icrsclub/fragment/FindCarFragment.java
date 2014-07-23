@@ -5,7 +5,9 @@ import com.cm.icrsclub.adapter.CityListAdapter;
 import com.cm.icrsclub.adapter.FindCarAdapter;
 import com.cm.icrsclub.constant.Constant;
 import com.cm.icrsclub.popup.ChangeCityPopup;
+import com.handmark.pulltorefresh.library.LoadingLayoutProxy;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 
@@ -67,11 +69,19 @@ public class FindCarFragment extends Fragment implements OnClickListener, OnChec
 		
 		rl_title.setOnClickListener(this);
 		cb_chang_car_map.setOnCheckedChangeListener(this);
-//		rl_find_car.setOnClickListener(this);
-//		rl_find_car_map.setOnClickListener(this);
+
+		
+		initPullToRefreshListView();
+		
+		return view;
+	}
+
+	private void initPullToRefreshListView() {
 		mFindCarAdapter = new FindCarAdapter(getActivity());
 		find_car_listview.setAdapter(mFindCarAdapter);
-		
+		find_car_listview.getFooterLoadingView().setRefreshingLabel(getString(R.string.buttom_refreshing_label));
+		find_car_listview.getFooterLayout().setReleaseLabel(getString(R.string.buttom_release_label));
+		find_car_listview.getFooterLayout().setPullLabel(getString(R.string.buttom_pull_label));
 		find_car_listview.setOnRefreshListener(new OnRefreshListener2<ListView>() {
 
 			@Override
@@ -80,20 +90,21 @@ public class FindCarFragment extends Fragment implements OnClickListener, OnChec
 				// TODO Auto-generated method stub
 				String label = DateUtils.formatDateTime(getActivity().getApplicationContext(), System.currentTimeMillis(),
 						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
-				refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
+				refreshView.getHeaderLayout().setSubHeaderText(label);
 				new GetDataTask().execute();
 			}
 
 			@Override
 			public void onPullUpToRefresh(
 					PullToRefreshBase<ListView> refreshView) {
+				String label = DateUtils.formatDateTime(getActivity().getApplicationContext(), System.currentTimeMillis(),
+						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+				refreshView.getFooterLayout().setSubHeaderText(label);
 				// TODO Auto-generated method stub
 				new GetDataTask().execute();
 			}
 		
 		});
-		
-		return view;
 	}
 	
 	

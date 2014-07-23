@@ -1,5 +1,9 @@
 <resources>
 
     <string name="app_name">Icarsclub</string>
-	<string name="title">PP租车</string>
+    <string name="title">PP租车</string>
+    <string name="buttom_pull_label">上拉加载更多…</string>
+    <string name="buttom_release_label">放开也是一种爱…</string>
+    <string name="buttom_refreshing_label">加载更多种，请稍后…</string>
+
 </resources>
