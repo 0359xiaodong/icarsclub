@@ -1,6 +1,7 @@
 package com.cm.icrsclub.fragment;
 
 import com.cm.icarsclub.R;
+import com.cm.icrsclub.CarInfoActivity;
 import com.cm.icrsclub.adapter.CityListAdapter;
 import com.cm.icrsclub.adapter.FindCarAdapter;
 import com.cm.icrsclub.constant.Constant;
@@ -11,12 +12,12 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
-import android.transition.ChangeBounds;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,8 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -37,7 +40,7 @@ import android.widget.PopupWindow.OnDismissListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class FindCarFragment extends Fragment implements OnClickListener, OnCheckedChangeListener, OnDismissListener {
+public class FindCarFragment extends Fragment implements OnClickListener, OnCheckedChangeListener, OnDismissListener, OnItemClickListener {
 	private RelativeLayout rl_find_car_map;
 	private RelativeLayout rl_find_car;
 	private RelativeLayout rl_title;
@@ -105,6 +108,7 @@ public class FindCarFragment extends Fragment implements OnClickListener, OnChec
 			}
 		
 		});
+		find_car_listview.setOnItemClickListener(this);
 	}
 	
 	
@@ -182,6 +186,14 @@ public class FindCarFragment extends Fragment implements OnClickListener, OnChec
 			find_car_listview.onRefreshComplete();
 
 		}
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(getActivity(),CarInfoActivity.class);
+		getActivity().startActivity(intent);
+		
 	}
 	
 }
